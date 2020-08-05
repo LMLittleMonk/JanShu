@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECharts入门</title>
+    <script src='https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts.min.js'></script>
+</head>
+<body>
+
+    <div class="section" id="tags_percent">
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div id="tags_chart" style="width:100%;height:600px;"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('tags_chart'));
+
+            // 指定图表的配置项和数据
+
+            var option = {
+                title : {
+                    text: '用户动态类型',
+                    subtext: '数据来源: www.jianshu.com',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{b} : {c} ({d}%)"
+                },
+                clockwise:false,
+                legend: {
+                    orient: 'vertical',
+                    left: '10%',
+                    data: ['发表评论','喜欢文章','赞赏文章','发表文章','关注用户','关注专题','点赞评论','关注文集']
+                },
+                color:['#FF6666','#EFE42A','#64BD3D','#EE9201','#29AAE3',
+                '#B74AE5','#0AAF9F','#E89589'],
+                series : [
+                    {
+                        name: '动态类型',
+                        type: 'pie',
+                        radius : '75%',
+                        center: ['50%', '60%'],
+                        data:[{"name": "\u53d1\u8868\u8bc4\u8bba", "value": 6559}, {"name": "\u559c\u6b22\u6587\u7ae0", "value": 1591}, {"name": "\u8d5e\u8d4f\u6587\u7ae0", "value": 468}, {"name": "\u53d1\u8868\u6587\u7ae0", "value": 136}, {"name": "\u5173\u6ce8\u7528\u6237", "value": 1}, {"name": "\u5173\u6ce8\u4e13\u9898", "value": 1}, {"name": "\u70b9\u8d5e\u8bc4\u8bba", "value": 31}, {"name": "\u5173\u6ce8\u6587\u96c6", "value": 11}],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 100,
+                                shadowOffsetX: 10,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            //*必须，绑定图表自适应功能
+           window.onresize = function () {
+               myChart.resize();
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+
+        </script>
+    </div>
+</body>
+</html>
